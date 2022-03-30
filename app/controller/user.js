@@ -21,9 +21,20 @@ class userController extends Controller {
     }
   }
   //获取所以用户
-  async get_user(){
+  async login(){
     const { ctx } = this;
-    ctx.body = await ctx.service.user.get_user();
+    let ansnum = await ctx.service.user.login(ctx.request.body);
+    if(ansnum == 200){
+      ctx.body = {
+        status: 200,
+        msg: '登录成功'
+      }
+    }else{
+      ctx.body = {
+        status: 300,
+        msg: '无用户信息请注册！'
+      }
+    }
   }
   //寻找用户
   async find_user(){
