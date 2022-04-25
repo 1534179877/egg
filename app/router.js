@@ -5,12 +5,18 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+  //小程序使用路由
   router.get('/', controller.home.index);
-  //user相关路由
-  router.post('/users/register',controller.user.register);
-  router.post('/users/login',controller.user.login);
-  router.post('/users/find_user',controller.user.find_user);
-  router.post('/users/update_user',controller.user.update_user);
-  router.post('/users/register',controller.user.register);
+  router.get('/home/swiperdata',controller.home.getswiper);
+  router.get('/home/floordata',controller.home.getfloor);
+  router.get('/goods/search',controller.goods.search);
+  router.post('/goods/detail',controller.goods.getdetail);
+  router.get('/categories',controller.goods.getgoods);
+
+
+  //admin 使用路由
+  router.post('/user/login',controller.user.login);
+  router.get('/user/getuser',controller.user.getuser);
+
 
 };

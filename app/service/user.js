@@ -1,46 +1,46 @@
-'user strict';
+'use strict';
 
 const Service = require('egg').Service;
+
 
 class userService extends Service{
     //用户注册
   async register(user){
-   const { ctx } = this;
-   try{
-       const res = await ctx.model.User.create(user);
-       console.log(res+':::***');
-       return 1;
-   }catch (error) {
-       console.log(error);
-       return 2;
-   }
+      const { ctx } = this;
+      //const {userName,password} = user;
+      const backdata = await ctx.model.User.create(user);
+      if(!backdata){ //使用格式化返回数据
+          return await ctx.service.utils.admin(300,{},'注册失败！');
+      }else{
+              return await ctx.service.utils.admin(200,backdata,'注册成功');
+      }
+
   }
   //用户登录
   async login(user){
         const { ctx } = this;
-        console.log(user);
-        const res = await ctx.model.User.findOne(user,(err,result)=>{
-            err?`没有数据${err}`:result;
-        });
-      console.log(res);
-        if(res !== null){
-            return 200; //查询成功
+        const {userName,password} = user;
+        const backdata = await ctx.model.User.findOne({userName:userName});
+        if(!backdata){ //使用格式化返回数据
+            return await ctx.service.utils.admin(300,{},'无该用户请注册！');
         }else{
-            return 100; //无数据
+         if(password !== backdata.password){
+             return await ctx.service.utils.admin(300,{},'密码错误！');
+         }else{
+             return await ctx.service.utils.admin(200,backdata,'登录成功');
+         }
         }
   }
   //用户查找
-  async find_user(name){
+  async getuser(){
       const { ctx } = this;
-      const res = await ctx.model.User.find({userName: name});
-      return
+      const backdata = await ctx.model.User.find();
+      if(!backdata){
+          return await ctx.service.utils.admin(300,{},'暂无数据');
+      }else{
+          return await ctx.service.utils.admin(200,backdata,'获取成功');
+      }
   }
-
-
-  async update_user(id){
-      const { ctx } = this;
-  }
-
 
 }
 //暴露
