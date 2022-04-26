@@ -23,6 +23,11 @@ $ npm start
 $ npm stop
 ```
 
+### 数据库连接
+```bash
+$  config.default.js 中的mongoose 模块
+```
+
 ### npm scripts
 
 - Use `npm run lint` to check code style.
