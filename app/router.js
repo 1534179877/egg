@@ -12,11 +12,11 @@ module.exports = app => {
   router.get('/goods/search',controller.goods.search);
   router.post('/goods/detail',controller.goods.getdetail);
   router.get('/categories',controller.goods.getgoods);
-
-
   //admin 使用路由
   router.post('/user/login',controller.user.login);
   router.get('/user/getuser',controller.user.getuser);
+  router.post('/upload',controller.upload.upload);
+
 
 
 };

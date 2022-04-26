@@ -1,4 +1,4 @@
-'user strict';
+'use strict';
 
 const Service = require('egg').Service;
 
@@ -8,14 +8,14 @@ class homeService extends Service{
         const { ctx } = this;
         //const data = await ctx.app.mysql.select('swiper');
         const data = await ctx.model.Swiper.find();
-        const  res = await ctx.service.utils.msginit(data);
-        return res;
+        return await ctx.service.utils.msginit(data);
+
     }
     async getfloor(){
         const { ctx } = this;
         const data = await ctx.model.Floor.find()
-        const  res = await ctx.service.utils.msginit(data);
-        return res;
+        return await ctx.service.utils.msginit(data);
+
     }
 }
 //暴露

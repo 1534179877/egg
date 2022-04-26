@@ -52,8 +52,16 @@ module.exports = appInfo => {
   }
   //文件上传配置
   config.multipart = {
-    mode:'file'
+    mode:'file',
+    fieldNameSize:30,
+    fieldSize:'3mb',
+    fields: 1,
+    fileSize:'3mb',
+    files: 1,
+    whitelist: [ '.png' ,'.jpg'],
   }
+
+
   //静态资源
   config.static = {
     prefix:'/upload',
