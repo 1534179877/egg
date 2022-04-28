@@ -13,7 +13,6 @@ class userController extends Controller {
   async login(){
     const { ctx } = this;
     const user = ctx.request.body
-
     ctx.body  = await ctx.service.user.login(user)
   }
   //获取用户

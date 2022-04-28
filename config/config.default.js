@@ -27,7 +27,7 @@ module.exports = appInfo => {
   //配置 mongoose
   config.mongoose = {
     client: {
-      url: process.env.MONGO_URL || 'mongodb://localhost:27017/rklshop',
+      url: process.env.MONGO_URL || 'mongodb://localhost:27017/rklshop'||'mongodb://localhost:27017/minishop',
       options: {},
       plugins: []
     }

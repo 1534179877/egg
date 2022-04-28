@@ -19,6 +19,13 @@ class HomeController extends Controller {
     ctx.body= await this.service.home.getswiper();
   }
 
+  //修改轮播图
+  async updateswiper(){
+    const { ctx } = this;
+    const swiper = ctx.request.body.swiper;
+    ctx.body  = await this.service.home.updateswiper(swiper);
+  }
+
 }
 
 module.exports = HomeController;
