@@ -7,7 +7,7 @@ class HomeController extends Controller {
   async index() {
     const { ctx } = this;
     ctx.body = 'hi, egqqqfdsg??';
-  }
+  } //没用的
   //楼层获取
   async getfloor(){
     const { ctx } = this;
@@ -24,6 +24,24 @@ class HomeController extends Controller {
     const { ctx } = this;
     const swiper = ctx.request.body.swiper;
     ctx.body  = await this.service.home.updateswiper(swiper);
+  }
+  //修改floor
+  async updatefloor(){
+    const { ctx } = this;
+    const floor = ctx.request.body;
+    ctx.body  = await this.service.home.updatefloor(floor);
+  }
+
+  async deleteswiper(){
+    const { ctx } = this;
+    const id = ctx.request.body;
+    ctx.body  = await this.service.home.deleteswiper(id);
+  }
+
+  async deletefloor(){
+    const { ctx } = this;
+    const floor = ctx.request.body;
+    ctx.body  = await this.service.home.deletefloor(floor);
   }
 
 }

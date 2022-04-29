@@ -34,7 +34,7 @@ module.exports = appInfo => {
   }
 
   //配置mysql
-  config.mysql = {
+  /*config.mysql = {
     client: {
       // host
       host: 'localhost',
@@ -49,7 +49,7 @@ module.exports = appInfo => {
     },
     app: true,
     agent: false,
-  }
+  }*/
   //文件上传配置
   config.multipart = {
     mode:'file',
