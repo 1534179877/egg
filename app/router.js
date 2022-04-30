@@ -5,7 +5,6 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  //小程序使用路由
   router.get('/', controller.home.index);
   //swiper模块
   router.get('/home/swiperdata',controller.home.getswiper);

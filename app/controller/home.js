@@ -41,6 +41,7 @@ class HomeController extends Controller {
   async deletefloor(){
     const { ctx } = this;
     const floor = ctx.request.body;
+    console.log(floor);
     ctx.body  = await this.service.home.deletefloor(floor);
   }
 
