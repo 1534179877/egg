@@ -28,10 +28,32 @@ class GoodsController extends Controller{
         ctx.body = await ctx.service.goods.getdetail(data);
     }
     //TODO 搜索
-    async search(){
+    async searchgoods(){
         const { ctx } = this;
-        const data = ctx.request.body.data;
+        //const data = ctx.request.body.data;
+        const data = ctx.query;
         ctx.body = await ctx.service.goods.search(data);
+    }
+
+    async getgoods(){
+        const { ctx }  = this;
+        ctx.body = await ctx.service.goods.getitem();
+    }
+    async updateitem(){
+        const { ctx } = this;//上下文 前端的数据就会在ctx.request.body中
+        const data = ctx.request.body.activedata;
+        //调用service层处理数据
+        ctx.body = await ctx.service.goods.updateitem(data);
+    }
+    async getorder(){
+        const { ctx }  = this;
+        ctx.body = await ctx.service.goods.getorder();
+    }
+    async updateorder(){
+        const { ctx } = this;//上下文 前端的数据就会在ctx.request.body中
+        const data = ctx.request.body.activedata;
+        //调用service层处理数据
+        ctx.body = await ctx.service.goods.updateorder(data);
     }
 }
 module.exports = GoodsController

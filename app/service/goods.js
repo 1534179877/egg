@@ -56,8 +56,6 @@ class GoodsService extends Service{
             }
         }
     }
-
-
     async deletecat(data){
         const {ctx} = this;
         const {cat_id , cat_level, cat_pid,} = data;
@@ -107,14 +105,55 @@ class GoodsService extends Service{
         }
 
     }
+    //
     async getdetail(data){
         const { ctx } = this;
         return data;
     }
     async search(data){
         const { ctx } = this;
-        return data;
+        const{cid} = data;
+        const ret = await ctx.model.Items.find({cat_id:cid});
+        const res= {
+            total:ret.length,
+            goods:ret
+        }
+        return await ctx.service.utils.msginit(res);
     }
+    //商品
+    async getitem(){
+        const { ctx } = this;
+        const data = await ctx.model.Items.find();
+        return await ctx.service.utils.msginit(data);
+    }
+    async updateitem(data){
+        const { ctx } = this;
+        const { _id } = data
+        const res = await  ctx.model.Items.updateOne({_id:_id},data)
+        if(res.ok == 1){
+            return await ctx.service.utils.admin(200,res,'更新成功');
+        }else{
+            return await ctx.service.utils.admin(200,res,'更新失败');
+        }
+    }
+
+    //订单
+    async getorder(){
+        const { ctx } = this;
+        const data = await ctx.model.Order.find();
+        return await ctx.service.utils.msginit(data);
+    }
+    async updateorder(data){
+        const { ctx } = this;
+        const { _id ,order_type} = data
+        const res = await  ctx.model.Order.updateOne({_id:_id}, {$set:{order_type}})
+        if(res.ok == 1){
+            return await ctx.service.utils.admin(200,res,'更新成功');
+        }else{
+            return await ctx.service.utils.admin(200,res,'更新失败');
+        }
+    }
+
 }
 
 module.exports = GoodsService

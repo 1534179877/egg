@@ -20,9 +20,7 @@ class UploadController extends Controller {
         await fs.unlinkSync(file.filepath);
         // 格式化返回值 返回新的文件存储地址
         ctx.body =  await ctx.service.utils.admin(200, {url:`http://localhost:7001/upload/${name}`},'上传成功');
-
     }
-
 }
 
 module.exports = UploadController
